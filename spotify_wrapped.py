@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 from collections import Counter
 
-WRAP = "" # Insert Google Sheet link between quotes
+WRAP = "https://docs.google.com/spreadsheets/d/1m0Mqg45MPlZYlLm2_tdqt4gQhTu-bBlHtzjhFjXShfo/edit?gid=0#gid=0" # Insert Google Sheet link between quotes
 
 current_datetime = datetime.now()
 current_month = current_datetime.strftime("%B") # Automatically computes current month if you want to do it monthly
@@ -28,7 +28,11 @@ pandas_url = convert_google_sheet_url(google_sheets_link)
 
 df = pd.read_csv(pandas_url)
 
-counts = Counter(df.artist)
+print(df.columns)
+counts = Counter(df['Artist'])
+
+
+#counts = Counter(df.artist)
 
 print("\n")
 if df.date.str.contains(f'{current_month}').any():
